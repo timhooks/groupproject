@@ -9,12 +9,10 @@ import java.util.*;
 
 public class Library {
     
-   private List<Song> songs;
-   private String name;
-   List<Song> songList = new ArrayList<Song>();
+   private ArrayList songs;
     
-    public Library(int capacity) {
-       capacity = capacity;
+    public Library() {
+       this.songs= new ArrayList<Song>();
     }
     
     public void addNewSong(Song song) {
@@ -22,17 +20,16 @@ public class Library {
     }
     
     public void removeSong(Song song) {
-       for (int i = songs.size(); --i >= 0;) {
-           Song s = songs.get(i);
-           if(song != null)
-               songs.remove(i);
+       songs.remove(song);
        }
+    public void sortTitle() {
+        Collections.sort(songs, Song.Comparators.bySongName);
     }
     
-    public static void sortList(ArrayList songList) {
-        Collections.sort(songList, new BandComparator());
-        }
+    public void sortArtist() {
+        Collections.sort(songs, Song.Comparators.byArtistName);
     }
+ }
 
     
             
