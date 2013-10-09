@@ -5,18 +5,16 @@
 package com.titanmusicplayer.bll;
 
 import java.util.*;
+import musicPlayerDB.entity.SongId;
 
-
-public class Song implements Comparable<Song> {
+public class Song {
     
-    private static String songName;
-    private static String artistName;
-    private static String filePath;
+    private String songName;
+    private String bandName;
     
-    public Song(String songName, String bandName, String filePath){
-        this.songName = songName;
-        this.artistName = artistName;
-        this.filePath = filePath;
+    public Song(String name, String bandName){
+        this.songName = name;
+        this.bandName = bandName;
     }
     
     public String getSongName() {
@@ -24,31 +22,16 @@ public class Song implements Comparable<Song> {
     }
     
     public String getBandName() {
-        return artistName;
-    }
-
-    @Override
-    public int compareTo(Song t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bandName;
     }
     
-    public static class Comparators {
-        public static Comparator<Song> bySongName = new Comparator<Song>() {
-            @Override
-            public int compare(Song t, Song t1) {
-                return t.songName.compareTo(t1.songName);
-            }
-        };
-        public static Comparator<Song> byArtistName = new Comparator<Song>() {
-            @Override
-            public int compare(Song t, Song t1) {
-             return t.artistName.compareTo(t1.artistName);
-            }
-        };
+    @Override
+    public String toString() {
+        return getSongName() + " by " + getBandName();
     }
 
      public String getFilePath() {
-        return this.filePath;
+        return null;
         
         
     }

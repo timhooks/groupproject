@@ -21,17 +21,17 @@ public class MP3Player {
     }
     
     public void play(Song song) {
-        try {
-            FileInputStream fis     = new FileInputStream(song.getFilePath());
-            BufferedInputStream bis = new BufferedInputStream(fis);
-            player = new Player(bis);
-        }
-        catch (Exception e) {
-            System.out.println("Problem playing file " + song.getFilePath());
-            System.out.println(e);
-        }
-
-        new Thread() {
+      try {  
+        File file = new File(song.getFilePath());
+        FileInputStream fis = new FileInputStream(file);
+        BufferedInputStream bis = new BufferedInputStream(fis);
+        
+        player = new Player(bis);
+        player.play();
+     } catch(Exception e){
+         System.out.print("ERROR" +e);
+     }
+     new Thread(){
             @Override
             public void run() {
                 try { player.play(); }
