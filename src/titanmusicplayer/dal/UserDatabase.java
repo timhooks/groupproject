@@ -24,6 +24,7 @@ public class UserDatabase {
         account.setUsername(username);
         account.setPassword(password);
         account.setEmail(email);
+        MusicDatabase.addLibrary();
         session.save(account);
         tx.commit();
         session.close();
