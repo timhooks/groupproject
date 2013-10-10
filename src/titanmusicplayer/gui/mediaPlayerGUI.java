@@ -31,25 +31,25 @@ public class mediaPlayerGUI extends javax.swing.JFrame
     
   UserAccount login = new UserAccount();    
    
-  // Mp3sTableModel dataModel = new Mp3sTableModel()
-   //{
-  // @Override
-   //       public int getColumnCount() { return 10; }
-   //@Override
-   //       public int getRowCount() { return 10;}
-   //@Override
-   //       public Object getValueAt(int row, int col) { return new Integer(row*col); } 
-  // };
+   SongTableModel dataModel = new SongTableModel()
+   {
+        @Override
+        public int getColumnCount() { return 10; }
+        @Override
+        public int getRowCount() { return 10;}
+        @Override
+        public Object getValueAt(int row, int col) { return new Integer(row*col); } 
+   };
    
- //PlaylistTableModel playlistDataModel = new PlaylistTableModel()
- //  {
- //  @Override
- //         public int getColumnCount() { return 10; }
- //  @Override
- //         public int getRowCount() { return 10;}
- //  @Override
-  //        public Object getValueAt(int row, int col) { return new Integer(row*col); } 
-  // };
+ PlaylistTableModel playlistDataModel = new PlaylistTableModel()
+ {
+  @Override
+  public int getColumnCount() { return 10; }
+  @Override
+  public int getRowCount() { return 10;}
+  @Override
+  public Object getValueAt(int row, int col) { return new Integer(row*col); } 
+ };
   
   
   
@@ -591,15 +591,15 @@ public class mediaPlayerGUI extends javax.swing.JFrame
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        player.back();
+       player.previousSong();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        player.skip();
+       player.nextSong();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
+        //TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
