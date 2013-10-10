@@ -18,6 +18,7 @@ public class MP3Player {
     private Player player;
     private ArrayList<Song> songs;
     private String TAG = "CustomPlaylist";
+    private Thread playerThread;
     
     
     public MP3Player() {
@@ -49,6 +50,12 @@ public class MP3Player {
            this.player.close();
        }
        
+    }
+    
+    public void pause() {
+        this.player.pause();
+        this.playerThread.stop();
+        this.playerThread = null;
     }
     
     public Song nextSong(int index) {
