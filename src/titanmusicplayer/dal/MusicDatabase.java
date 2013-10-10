@@ -10,7 +10,6 @@ import music.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-
 /**
  *
  * @author Tim
@@ -20,10 +19,11 @@ public class MusicDatabase {
     private static HibernateUtil helper;
     
     public static void addSongToLibrary(String title, String artist, BigDecimal duration, String filepath){
-        music.entity.Library library1 = new music.entity.Library();
         session = helper.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
+        music.entity.Library library1 = new music.entity.Library();
         music.entity.Song song = new music.entity.Song();
+        library1 = getLibrary(1);
         song.setTitle(title);
         song.setArtist(artist);
         song.setDuration(duration);
@@ -36,10 +36,11 @@ public class MusicDatabase {
     }
     
      public static void addSongToPlaylist(int id){
-        music.entity.Playlist playlist1 = new music.entity.Playlist();
         session = helper.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
+        music.entity.Playlist playlist1 = new music.entity.Playlist();
         music.entity.Song song = new music.entity.Song();
+        playlist1 = getPlaylist(1);
         song = (music.entity.Song) session.get(music.entity.Song.class, id);
         song.setPlaylist(playlist1);
         session.save(playlist1);
@@ -47,7 +48,7 @@ public class MusicDatabase {
         tx.commit();
         session.close();
     }
-    
+     
      public static music.entity.Song getSong(int id){
        session = helper.getSessionFactory().openSession();
        Transaction tx = session.beginTransaction();
