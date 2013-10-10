@@ -339,6 +339,11 @@ public class mediaPlayerGUI extends javax.swing.JFrame
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backButton.PNG"))); // NOI18N
         buttonGroup1.add(jButton2);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/stopButton.PNG"))); // NOI18N
         buttonGroup1.add(jButton1);
@@ -556,6 +561,10 @@ public class mediaPlayerGUI extends javax.swing.JFrame
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
        songLibrary.sortArtist();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        player.skipForward();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
