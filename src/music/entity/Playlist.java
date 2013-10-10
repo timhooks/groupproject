@@ -1,5 +1,9 @@
-package musicdata.entity;
-// Generated Oct 3, 2013 4:36:56 PM by Hibernate Tools 3.2.1.GA
+package music.entity;
+// Generated Oct 10, 2013 1:36:35 PM by Hibernate Tools 3.2.1.GA
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 
 
 
@@ -8,7 +12,7 @@ package musicdata.entity;
  */
 public class Playlist  implements java.io.Serializable {
 
-
+     @Id @GeneratedValue 
      private int id;
      private String name;
 

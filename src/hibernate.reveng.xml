@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="musicdata"/>
-  <table-filter match-name="playlist"/>
-  <table-filter match-name="library"/>
-  <table-filter match-name="song"/>
+  <schema-selection match-schema="APP"/>
+  <table-filter match-name="LIBRARY"/>
+  <table-filter match-name="USERACCOUNT"/>
+  <table-filter match-name="SONG"/>
+  <table-filter match-name="PLAYLIST"/>
 </hibernate-reverse-engineering>

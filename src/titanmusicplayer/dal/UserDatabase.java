@@ -4,10 +4,28 @@
  */
 package titanmusicplayer.dal;
 
+import music.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 /**
  *
  * @author Tim
  */
 public class UserDatabase {
     
+    private static Session session;
+    private static HibernateUtil helper;
+    
+    public static void addUser(String username, String password, String email){
+        session = helper.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        music.entity.Useraccount account = new music.entity.Useraccount();
+        account.setUsername(username);
+        account.setPassword(password);
+        account.setEmail(email);
+        session.save(account);
+        tx.commit();
+        session.close();
+    }
 }
