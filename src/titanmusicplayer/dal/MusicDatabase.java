@@ -11,7 +11,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 
-
 /**
  *
  * @author Tim
@@ -42,7 +41,7 @@ public class MusicDatabase {
         session.close();
     }
     
-     public static void addPlaylist(String name){
+    public static void addPlaylist(String name){
         session = helper.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         music.entity.Playlist playlist = new music.entity.Playlist();
@@ -52,11 +51,19 @@ public class MusicDatabase {
         session.close();
     }
      
-     public static String getSong(int id){
+    public static String getSong(int id){
        session = helper.getSessionFactory().openSession();
        Transaction tx = session.beginTransaction();
        music.entity.Song song = new music.entity.Song();
        song = (music.entity.Song) session.get(music.entity.Song.class, id);
        return song.getTitle();
+     }
+     
+    public static String getPlaylist(int id){
+       session = helper.getSessionFactory().openSession();
+       Transaction tx = session.beginTransaction();
+       music.entity.Playlist song = new music.entity.Playlist();
+       song = (music.entity.Playlist) session.get(music.entity.Playlist.class, id);
+       return song.getName();
      }
 }
