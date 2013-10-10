@@ -9,18 +9,25 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import sun.rmi.runtime.Log;
+
 
 public class MP3Player {
     
     private String filename;
     private Player player;
+    private ArrayList<Song> songs;
+    private String TAG = "CustomPlaylist";
     
     
     public MP3Player() {
-
+        songs = new ArrayList<Song>();
     }
     
-    public void play(Song song) {
+    public void play(final Song song) {
+        new Thread() {
+            @Override
+            public void run() {
         try {
             FileInputStream fis     = new FileInputStream(song.getFilePath());
             BufferedInputStream bis = new BufferedInputStream(fis);
@@ -31,9 +38,6 @@ public class MP3Player {
             System.out.println(e);
         }
 
-        new Thread() {
-            @Override
-            public void run() {
                 try { player.play(); }
                 catch (Exception e) { System.out.println(e); }
             }
@@ -45,6 +49,32 @@ public class MP3Player {
            this.player.close();
        }
        
+    }
+    
+    public Song nextSong(int index) {
+       if((index + 1) < songs.size() )
+    {
+      Log.e(TAG,"send next song at position " + (index + 1 ) + " with id " + songs.get(index+1).toString() );
+      return songs.get(index + 1);  
+    }
+    else
+    {
+      Log.e(TAG,"This is the last song!");
+      return null;
+    } 
+    }
+    
+    public Song previousSong(int index) {
+        if((index - 1) < 0)
+    {
+      Log.e(TAG,"NO previous");
+      return null;
+    }
+    else
+    {
+      Log.e(TAG,"send previous song at position " + (index - 1 ) + " with " + songs.get(index - 1).toString() );
+      return songs.get(index - 1);
+    }
     }
 
 
