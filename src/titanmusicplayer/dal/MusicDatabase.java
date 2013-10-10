@@ -10,7 +10,6 @@ import music.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-
 /**
  *
  * @author Tim
@@ -49,7 +48,7 @@ public class MusicDatabase {
         tx.commit();
         session.close();
     }
-    
+     
      public static music.entity.Song getSong(int id){
        session = helper.getSessionFactory().openSession();
        Transaction tx = session.beginTransaction();

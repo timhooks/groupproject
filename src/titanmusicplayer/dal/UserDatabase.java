@@ -30,6 +30,30 @@ public class UserDatabase {
         session.close();
     }
     
+    public static String getUsername(int id){
+       session = helper.getSessionFactory().openSession();
+       Transaction tx = session.beginTransaction();
+       music.entity.Useraccount user = new music.entity.Useraccount();
+       user = (music.entity.Useraccount) session.get(music.entity.Useraccount.class, id);
+       return user.getUsername(); 
+    }
+    
+    public static String getPassword(int id){
+       session = helper.getSessionFactory().openSession();
+       Transaction tx = session.beginTransaction();
+       music.entity.Useraccount user = new music.entity.Useraccount();
+       user = (music.entity.Useraccount) session.get(music.entity.Useraccount.class, id);
+       return user.getPassword(); 
+    }
+    
+    public static String getEmail(int id){
+       session = helper.getSessionFactory().openSession();
+       Transaction tx = session.beginTransaction();
+       music.entity.Useraccount user = new music.entity.Useraccount();
+       user = (music.entity.Useraccount) session.get(music.entity.Useraccount.class, id);
+       return user.getEmail(); 
+    }
+    
     public static music.entity.Useraccount getUser(int id){
        session = helper.getSessionFactory().openSession();
        Transaction tx = session.beginTransaction();
