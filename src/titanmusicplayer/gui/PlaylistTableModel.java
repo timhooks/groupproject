@@ -6,7 +6,7 @@ package titanmusicplayer.gui;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-import musicdata.entity.Playlist;
+import music.entity.Playlist;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
