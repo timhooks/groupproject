@@ -19,7 +19,8 @@ public class MusicDatabase {
     private static Session session;
     private static HibernateUtil helper;
     
-    public static void addSong(String title, String artist, BigDecimal duration, String filepath){
+    public static void addSongToLibrary(String title, String artist, BigDecimal duration, String filepath){
+        music.entity.Library library1 = new music.entity.Library();
         session = helper.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         music.entity.Song song = new music.entity.Song();
@@ -27,11 +28,34 @@ public class MusicDatabase {
         song.setArtist(artist);
         song.setDuration(duration);
         song.setFilepath(filepath);
+        song.setLibrary(library1);
+        session.save(library1);
         session.save(song);
         tx.commit();
         session.close();
     }
     
+     public static void addSongToPlaylist(int id){
+        music.entity.Playlist playlist1 = new music.entity.Playlist();
+        session = helper.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        music.entity.Song song = new music.entity.Song();
+        song = (music.entity.Song) session.get(music.entity.Song.class, id);
+        song.setPlaylist(playlist1);
+        session.save(playlist1);
+        session.save(song);
+        tx.commit();
+        session.close();
+    }
+    
+     public static music.entity.Song getSong(int id){
+       session = helper.getSessionFactory().openSession();
+       Transaction tx = session.beginTransaction();
+       music.entity.Song song = new music.entity.Song();
+       song = (music.entity.Song) session.get(music.entity.Song.class, id);
+       return song;
+     }
+     
     public static void addLibrary(){
         session = helper.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -39,6 +63,14 @@ public class MusicDatabase {
         session.save(library);
         tx.commit();
         session.close();
+    }
+    
+     public static music.entity.Library getLibrary(int id){
+        session = helper.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        music.entity.Library library = new music.entity.Library();
+        library = (music.entity.Library) session.get(music.entity.Library.class, id);
+        return library;
     }
     
     public static void addPlaylist(String name){
@@ -51,19 +83,11 @@ public class MusicDatabase {
         session.close();
     }
      
-    public static String getSong(int id){
+    public static music.entity.Playlist getPlaylist(int id){
        session = helper.getSessionFactory().openSession();
        Transaction tx = session.beginTransaction();
-       music.entity.Song song = new music.entity.Song();
-       song = (music.entity.Song) session.get(music.entity.Song.class, id);
-       return song.getTitle();
-     }
-     
-    public static String getPlaylist(int id){
-       session = helper.getSessionFactory().openSession();
-       Transaction tx = session.beginTransaction();
-       music.entity.Playlist song = new music.entity.Playlist();
-       song = (music.entity.Playlist) session.get(music.entity.Playlist.class, id);
-       return song.getName();
+       music.entity.Playlist playlist = new music.entity.Playlist();
+       playlist = (music.entity.Playlist) session.get(music.entity.Playlist.class, id);
+       return playlist;
      }
 }
