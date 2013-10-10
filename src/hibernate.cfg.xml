@@ -2,13 +2,16 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
     <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
     <property name="hibernate.connection.url">jdbc:derby://localhost:1527/music</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">1234</property>
-    <mapping resource="musicdata/entity/Playlist.hbm.xml"/>
-    <mapping resource="musicdata/entity/Song.hbm.xml"/>
-    <mapping resource="musicdata/entity/Library.hbm.xml"/>
+    <property name="hibernate.connection.username">timhooks</property>
+    <property name="hibernate.connection.password">123456</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
+    <mapping resource="music/entity/Song.hbm.xml"/>
+    <mapping resource="music/entity/Library.hbm.xml"/>
+    <mapping resource="music/entity/Useraccount.hbm.xml"/>
+    <mapping resource="music/entity/Playlist.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
