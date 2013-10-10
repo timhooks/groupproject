@@ -5,14 +5,16 @@
 package titanmusicplayer.gui;
 
 
-import titanmusicplayer.dal.Mp3sTableModel;
+import com.titanmusicplayer.bll.Library;
+//import titanmusicplayer.dal.Mp3sTableModel;
 import java.io.File;
 import java.io.FileInputStream;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import titanmusicplayer.bll.Mp3Player;
-import titanmusicplayer.dal.Mp3Upload;
+import com.titanmusicplayer.bll.MP3Player;
+import com.titanmusicplayer.bll.Song;
+
 
 /**
  *
@@ -20,18 +22,22 @@ import titanmusicplayer.dal.Mp3Upload;
  */
 public class mediaPlayerGUI extends javax.swing.JFrame 
 {
-  UserAccount login = new UserAccount();
-  Mp3Player song = new Mp3Player("C:/SNSD.mp3");    
+  private MP3Player player;
+  private Song chosenSong;
+  Library songLibrary;
+    
+    
+    UserAccount login = new UserAccount();    
    
-   Mp3sTableModel dataModel = new Mp3sTableModel()
-   {
-   @Override
-          public int getColumnCount() { return 10; }
-   @Override
-          public int getRowCount() { return 10;}
-   @Override
-          public Object getValueAt(int row, int col) { return new Integer(row*col); } 
-   };
+  // Mp3sTableModel dataModel = new Mp3sTableModel()
+   //{
+  // @Override
+   //       public int getColumnCount() { return 10; }
+   //@Override
+   //       public int getRowCount() { return 10;}
+   //@Override
+   //       public Object getValueAt(int row, int col) { return new Integer(row*col); } 
+  // };
    
  
   
@@ -42,8 +48,12 @@ public class mediaPlayerGUI extends javax.swing.JFrame
      * Creates new form mediaPlayerGUI
      */
     public mediaPlayerGUI() {
-        this.scrollpane = new JScrollPane(jTable1);
+        
         initComponents();
+        this.scrollpane = new JScrollPane(jTable1);
+        player = new MP3Player();
+        chosenSong = null;
+
     }
 
     /**
@@ -404,21 +414,20 @@ public class mediaPlayerGUI extends javax.swing.JFrame
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSlider1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
  
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        song.play();
+        player.play(chosenSong);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jPanel7HierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_jPanel7HierarchyChanged
@@ -426,7 +435,7 @@ public class mediaPlayerGUI extends javax.swing.JFrame
     }//GEN-LAST:event_jPanel7HierarchyChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        song.stop();
+        player.stop();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -461,15 +470,15 @@ public class mediaPlayerGUI extends javax.swing.JFrame
                     {
                      e.printStackTrace();
                     }
-              Mp3Upload newMp3 = new Mp3Upload();
-              newMp3.saveMp3();
+//              Mp3Upload newMp3 = new Mp3Upload();
+ //             newMp3.saveMp3();
             } 
          
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTable1HierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_jTable1HierarchyChanged
