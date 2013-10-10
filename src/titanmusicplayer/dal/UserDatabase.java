@@ -28,4 +28,12 @@ public class UserDatabase {
         tx.commit();
         session.close();
     }
+    
+    public static music.entity.Useraccount getUser(int id){
+       session = helper.getSessionFactory().openSession();
+       Transaction tx = session.beginTransaction();
+       music.entity.Useraccount user = new music.entity.Useraccount();
+       user = (music.entity.Useraccount) session.get(music.entity.Useraccount.class, id);
+       return user;
+    }
 }

@@ -1,8 +1,12 @@
 package music.entity;
 // Generated Oct 10, 2013 1:36:35 PM by Hibernate Tools 3.2.1.GA
 
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 
@@ -15,6 +19,7 @@ public class Playlist  implements java.io.Serializable {
      @Id @GeneratedValue 
      private int id;
      private String name;
+     private List <Song> songs;
 
     public Playlist() {
     }
@@ -42,7 +47,15 @@ public class Playlist  implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
+    
+    @OneToMany(targetEntity=Song.class, mappedBy="playlist", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    public List<Song> getSongs() {
+        return songs;
+    }
+    
+    public void setSongs(List<Song> songs){
+        this.songs = songs;
+    }
 
 
 
